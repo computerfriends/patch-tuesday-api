@@ -254,7 +254,7 @@
   }
 
 
-  __name(getRandomFact, "getRandomFact");
+  __name(apiFetch, "apiFetch");
   var restCfWorker = require_cloudflare_worker_rest_api();
   var app = new restCfWorker();
   addEventListener("fetch", (event) => {
