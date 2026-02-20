@@ -189,7 +189,7 @@
   });
 
   // index.js
-  function isPatchTuseday() {
+  function getPatchTuseday() {
 
     var d = new Date(),
         month = d.getMonth(),
@@ -209,8 +209,12 @@
     }
 
     patchTuseday = tuesdays[2]
+    return patchTuseday
+  }
 
+  function isPatchTuseday() {
     const currentDate = new Date()
+    const patchTuseday = getPatchTuseday()
 
     if (patchTuseday.getDay() === currentDate.getDay()) {
       return true
@@ -228,7 +232,7 @@
     weekOfMonth = Math.ceil((days + firstDay.getDay() + 1) / 7)
 
 
-    const pDate = isPatchTuseday();
+    const pDate = getPatchTuseday();
     const pFirstDay = new Date(pDate.getFullYear(), 0, 1)
     const pDays = Math.floor((pDate - pFirstDay) / (24 * 60 * 60 * 1000))
     pWeekOfMonth = Math.ceil((pDays + pFirstDay.getDay() + 1) / 7)
