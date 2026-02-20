@@ -243,7 +243,7 @@
 
     const pDate = getPatchTuseday();
 
-    if (date.getWeek() === pWeekOfMonth.getWeek()) {
+    if (date.getWeek() === pDate.getWeek()) {
       return true
     } else {
       return false
