@@ -231,6 +231,7 @@
     const days = Math.floor((date - firstDay) / (24 * 60 * 60 * 1000))
     weekOfMonth = Math.ceil((days + firstDay.getDay() + 1) / 7)
     console.log("date is"  + date)
+    console.log("weekOfMonth is"  + weekOfMonth)
 
 
     const pDate = getPatchTuseday();
@@ -238,6 +239,7 @@
     const pDays = Math.floor((pDate - pFirstDay) / (24 * 60 * 60 * 1000))
     pWeekOfMonth = Math.ceil((pDays + pFirstDay.getDay() + 1) / 7)
     console.log("pDate is"  + pDate)
+    console.log("pWeekOfMonth is"  + pWeekOfMonth)
 
 
     if (weekOfMonth === pWeekOfMonth) {
