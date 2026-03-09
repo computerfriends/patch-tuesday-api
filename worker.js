@@ -250,7 +250,7 @@
     console.log("pDate date week", pDate.getWeek())
 
     dateWeek = date.getWeek()
-    pDateWeek = date.pDateWeek()
+    pDateWeek = pDate.getWeek()
 
     if (dateWeek === pDateWeek) {
       return true
