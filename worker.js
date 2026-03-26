@@ -232,7 +232,7 @@
     const currentDate = new Date()
     const patchTuesday = getPatchTuesday()
 
-    if (patchTuesday.getDay() === currentDate.getDay()) {
+    if ((patchTuesday.getFullYear() === currentDate.getFullYear()) && (patchTuesday.getMonth() === currentDate.getMonth()) && (patchTuesday.getDay() === currentDate.getDay())) {
       return true
     } else {
       return false
