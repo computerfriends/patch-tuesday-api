@@ -214,7 +214,7 @@
     d.setDate(1);
 
     // Get the first Tuseday in the month
-    while (d.getDay() !== 4) {
+    while (d.getDay() !== 2) {
         d.setDate(d.getDate() + 1);
     }
 
@@ -224,7 +224,7 @@
         d.setDate(d.getDate() + 7);
     }
 
-    var patchTuesday = tuesdays[3]
+    var patchTuesday = tuesdays[1]
     return patchTuesday
   }
 
