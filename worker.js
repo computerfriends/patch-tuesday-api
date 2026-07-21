@@ -204,10 +204,31 @@
   }
 
 
+  // Microsoft releases patches at 10:00 AM Pacific time, so "now" for
+  // Patch Tuesday purposes is Pacific wall-clock time, not the Workers
+  // runtime's UTC clock.
+  function getPacificNow() {
+    var parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Los_Angeles",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hourCycle: "h23"
+    }).formatToParts(new Date()).reduce((acc, part) => {
+      if (part.type !== "literal") acc[part.type] = parseInt(part.value, 10);
+      return acc;
+    }, {});
+
+    return new Date(Date.UTC(parts.year, parts.month - 1, parts.day, parts.hour, parts.minute, parts.second));
+  }
+
   // index.js
   function getPatchTuesday() {
 
-    var d = new Date(),
+    var d = getPacificNow(),
         month = d.getMonth(),
         tuesdays= [];
 
@@ -229,10 +250,13 @@
   }
 
   function isPatchTuesday() {
-    const currentDate = new Date()
+    const currentDate = getPacificNow()
     const patchTuesday = getPatchTuesday()
 
-    if ((patchTuesday.getFullYear() === currentDate.getFullYear()) && (patchTuesday.getMonth() === currentDate.getMonth()) && (patchTuesday.getDay() === currentDate.getDay())) {
+    const isPatchTuesdayDate = (patchTuesday.getFullYear() === currentDate.getFullYear()) && (patchTuesday.getMonth() === currentDate.getMonth()) && (patchTuesday.getDate() === currentDate.getDate())
+
+    // Patches aren't released until 10:00 AM Pacific on Patch Tuesday.
+    if (isPatchTuesdayDate && currentDate.getHours() >= 10) {
       return true
     } else {
       return false
@@ -242,7 +266,7 @@
 
   function isBWeek() {
 
-    const date = new Date()
+    const date = getPacificNow()
 
     const pDate = getPatchTuesday();
 
